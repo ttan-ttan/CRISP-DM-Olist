@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRISP-DM Agile Facilitation Simulation | Olist Capstone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      background-color: #0b1329;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .crisp-phase {
+      transition: all 0.4s ease;
+      border: 2px solid #1e293b;
+    }
+
+    .crisp-phase.active {
+      border-color: #38bdf8;
+      background-color: #0f2744;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+    }
+
+    .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: #0b1329; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+  </style>
+</head>
+<body class="w-screen h-screen flex flex-col justify-between p-6 overflow-hidden select-none">
+
+  <!-- Header Banner -->
+  <header class="flex justify-between items-center border-b border-slate-800 pb-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-sky-500/20 border border-sky-400 text-sky-400 flex items-center justify-center text-xl font-bold">
+        <i class="fa-solid fa-diagram-project"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-black text-slate-100 tracking-wide">Olist DE Leadership & Agile Workflow Case Study</h1>
+        <p class="text-xs font-mono text-slate-400">GenSG Capstone • CRISP-DM, Vertical Slicing & Industry Practice</p>
+      </div>
+    </div>
+    
+    <!-- Stage Counter -->
+    <div class="flex items-center gap-3 font-mono">
+      <span class="text-xs text-slate-400 uppercase tracking-widest font-bold">Stage Progress</span>
+      <span id="stageBadge" class="bg-sky-950 text-sky-400 border border-sky-700 px-3 py-1 rounded-full text-xs font-bold">
+        1 / 8: Bottlenecks & Waiting
+      </span>
+    </div>
+  </header>
+
+  <!-- Main Animation Canvas -->
+  <main class="my-auto w-full max-w-7xl mx-auto grid grid-cols-12 gap-8 items-center h-[540px]">
+    
+    <!-- Left Column: Visual Simulation Stage -->
+    <section class="col-span-7 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 h-full flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <span id="simTitle" class="text-sm font-mono font-bold text-sky-400">STAGE 1: Traditional Pipeline Bottlenecks & Confusion</span>
+        <span class="text-[10px] font-mono text-slate-500 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">Interactive Simulation</span>
+      </div>
+
+      <!-- STAGE 1 VISUAL: WAITING & CONFUSION BOTTLENECK -->
+      <div id="simStage1" class="my-auto space-y-3 font-mono text-xs">
+        <div class="bg-red-950/40 border border-red-500/40 p-4 rounded-2xl space-y-2">
+          <span class="text-red-400 font-bold block"><i class="fa-solid fa-hourglass-half mr-2"></i>The Horizontal Bottleneck (One Waiting for Another):</span>
+          <div class="space-y-2 text-[11px] text-slate-300">
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
+              <span>1. Raw Extraction & Schema Mapping</span>
+              <span class="text-emerald-400 font-bold">Done (Studied Ahead)</span>
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
+              <span>2. Data Cleansing & Normalization</span>
+              <span class="text-amber-400 font-bold animate-pulse">Blocked (Waiting for schemas)</span>
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center text-slate-500">
+              <span>3. Gold Star Schema Modeling</span>
+              <span>Waiting on Step 2...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-[11px]">
+          <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-1">
+            <span class="text-amber-400 font-bold block"><i class="fa-solid fa-circle-question mr-1"></i> Confusion & Lost Direction</span>
+            <p class="text-slate-400">Teammates felt unsure about where to start with PySpark casting, date parsing, and null handling across 9 datasets.</p>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-1">
+            <span class="text-red-400 font-bold block"><i class="fa-solid fa-gauge-high mr-1"></i> 4 Different Speeds</span>
+            <p class="text-slate-400">Rigid deadlines caused stress because everyone had different learning speeds and personal schedules.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 2 VISUAL: THEORY OF CRISP-DM (THE 6 PHASES) -->
+      <div id="simStage2" class="hidden my-auto grid grid-cols-2 gap-3 font-mono text-xs">
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-sky-500/40">
+          <span class="text-sky-400 font-bold block mb-1">1. Business Understanding</span>
+          <p class="text-[11px] text-slate-400">Define project objectives, business metrics, and success criteria before writing code.</p>
+        </div>
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-purple-500/40">
+          <span class="text-purple-400 font-bold block mb-1">2. Data Understanding</span>
+          <p class="text-[11px] text-slate-400">Explore raw datasets, schemas, missing values, and data quality issues.</p>
+        </div>
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-amber-500/40">
+          <span class="text-amber-400 font-bold block mb-1">3. Data Preparation</span>
+          <p class="text-[11px] text-slate-400">Cleanse, normalize, type-cast, and structure data into Bronze/Silver layers.</p>
+        </div>
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-emerald-500/40">
+          <span class="text-emerald-400 font-bold block mb-1">4. Modeling</span>
+          <p class="text-[11px] text-slate-400">Build Gold layer Star Schema, Fact/Dim joins, and analytical aggregations.</p>
+        </div>
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-cyan-500/40 col-span-2 flex justify-between gap-4">
+          <div class="w-1/2">
+            <span class="text-cyan-300 font-bold block mb-1">5. Evaluation</span>
+            <p class="text-[11px] text-slate-400">Validate business DAX metrics against expectations.</p>
+          </div>
+          <div class="w-1/2">
+            <span class="text-blue-400 font-bold block mb-1">6. Deployment</span>
+            <p class="text-[11px] text-slate-400">Publish to Fabric, Power BI, & automated CI/CD webhooks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 3 VISUAL: VERTICAL SLICING MATRIX (INSPIRED BY DIAGRAM) -->
+      <div id="simStage3" class="hidden my-auto space-y-2 font-mono text-xs">
+        <div class="text-[11px] text-slate-400 mb-1 flex justify-between items-center">
+          <span>Vertical Slicing Matrix vs Horizontal Slicing:</span>
+          <span class="text-emerald-400 font-bold">Slice 1 → Slice 2 → Slice 3</span>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2 text-center text-[10px]">
+          <!-- Left Label Column -->
+          <div class="space-y-1.5 text-left font-bold text-slate-400 pr-2 border-r border-slate-800">
+            <div class="h-6 flex items-center">Deployment</div>
+            <div class="h-6 flex items-center">Evaluation</div>
+            <div class="h-6 flex items-center">Modeling</div>
+            <div class="h-6 flex items-center">Data Prep</div>
+            <div class="h-6 flex items-center">Data Under.</div>
+            <div class="h-6 flex items-center">Business Under.</div>
+          </div>
+
+          <!-- Feature 1 / Slice 1 (My Role) -->
+          <div class="bg-sky-950/60 border-2 border-sky-400 p-2 rounded-xl space-y-1.5">
+            <span class="text-sky-300 font-bold block text-[11px] border-b border-sky-800 pb-1">Slice 1: Orders (Me)</span>
+            <div class="h-6 bg-sky-500/20 text-sky-200 rounded flex items-center justify-center font-bold">Fabric / PBI</div>
+            <div class="h-6 bg-sky-500/20 text-sky-200 rounded flex items-center justify-center">DAX Metric</div>
+            <div class="h-6 bg-sky-500/20 text-sky-200 rounded flex items-center justify-center">Gold Fact</div>
+            <div class="h-6 bg-sky-500/20 text-sky-200 rounded flex items-center justify-center">Silver Clean</div>
+            <div class="h-6 bg-sky-500/20 text-sky-200 rounded flex items-center justify-center">Bronze Delta</div>
+            <div class="h-6 bg-sky-500/20 text-sky-200 rounded flex items-center justify-center">Logistics Goal</div>
+          </div>
+
+          <!-- Feature 2 / Slice 2 (Teammate A/B) -->
+          <div class="bg-amber-950/40 border border-amber-500/40 p-2 rounded-xl space-y-1.5">
+            <span class="text-amber-400 font-bold block text-[11px] border-b border-amber-800 pb-1">Slice 2: Payments</span>
+            <div class="h-6 bg-slate-900 text-slate-500 rounded flex items-center justify-center">Pending</div>
+            <div class="h-6 bg-slate-900 text-slate-500 rounded flex items-center justify-center">Pending</div>
+            <div class="h-6 bg-amber-500/20 text-amber-200 rounded flex items-center justify-center">Gold Dim</div>
+            <div class="h-6 bg-amber-500/20 text-amber-200 rounded flex items-center justify-center">Silver Clean</div>
+            <div class="h-6 bg-amber-500/20 text-amber-200 rounded flex items-center justify-center">Bronze Delta</div>
+            <div class="h-6 bg-amber-500/20 text-amber-200 rounded flex items-center justify-center font-bold">Aligned</div>
+          </div>
+
+          <!-- Feature 3 / Slice 3 (Teammate C) -->
+          <div class="bg-purple-950/40 border border-purple-500/40 p-2 rounded-xl space-y-1.5">
+            <span class="text-purple-400 font-bold block text-[11px] border-b border-purple-800 pb-1">Slice 3: Sellers</span>
+            <div class="h-6 bg-slate-900 text-slate-500 rounded flex items-center justify-center">Pending</div>
+            <div class="h-6 bg-slate-900 text-slate-500 rounded flex items-center justify-center">Pending</div>
+            <div class="h-6 bg-purple-500/20 text-purple-200 rounded flex items-center justify-center">Gold Dim</div>
+            <div class="h-6 bg-purple-500/20 text-purple-200 rounded flex items-center justify-center">Silver Clean</div>
+            <div class="h-6 bg-purple-500/20 text-purple-200 rounded flex items-center justify-center">Bronze Delta</div>
+            <div class="h-6 bg-purple-500/20 text-purple-200 rounded flex items-center justify-center font-bold">Aligned</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 4 VISUAL: CODE STANDARDIZATION & EXPLICIT READERS -->
+      <div id="simStage4" class="hidden my-auto space-y-2 font-mono text-xs overflow-y-auto max-h-[380px] pr-1 scrollbar-thin">
+        <div class="bg-sky-950/40 border border-sky-500/40 p-3 rounded-2xl space-y-1">
+          <span class="text-sky-300 font-bold block text-xs"><i class="fa-solid fa-vial-circle-check mr-2"></i>My Reusable Template Contribution</span>
+          <p class="text-[11px] text-slate-300">I documented reusable PySpark schema reader templates so groupmates could apply clean schema validation without throwing runtime errors.</p>
+        </div>
+
+        <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-1">
+          <div class="flex justify-between text-[10px] text-slate-400">
+            <span class="text-cyan-300 font-bold"><i class="fa-solid fa-code mr-1"></i> Standardized Error-Proof Reader Pattern (PySpark)</span>
+            <span>src/utils/schema_reader.py</span>
+          </div>
+          <pre class="bg-[#001222] p-2.5 rounded-xl text-[10px] text-sky-200 overflow-x-auto leading-relaxed border border-[#002d4d]">
+<span class="text-purple-400">from</span> pyspark.sql.types <span class="text-purple-400">import</span> StructType, StructField, StringType, TimestampType
+
+<span class="text-purple-400">def</span> <span class="text-cyan-300">load_and_validate_silver</span>(spark, path, expected_schema):
+    <span class="text-purple-400">try</span>:
+        <span class="text-slate-500"># Read file enforcing explicit schema to prevent read crashes</span>
+        df = spark.read.schema(expected_schema).parquet(path)
+        <span class="text-purple-400">return</span> df.filter(df[<span class="text-emerald-300">"order_id"</span>].isNotNull())
+    <span class="text-purple-400">except</span> Exception <span class="text-purple-400">as</span> e:
+        logger.error(<span class="text-emerald-300">f"Schema Mismatch in {path}: {str(e)}"</span>)
+        <span class="text-purple-400">return</span> spark.createDataFrame([], expected_schema)
+          </pre>
+        </div>
+      </div>
+
+      <!-- STAGE 5 VISUAL: GOLD AGGREGATION, DISCUSSIONS & POWER BI DAX -->
+      <div id="simStage5" class="hidden my-auto space-y-3 font-mono text-xs">
+        <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-1.5">
+          <span class="text-emerald-400 font-bold block text-xs"><i class="fa-solid fa-layer-group mr-2"></i>1. Silver Cleansing & Standardization Complete</span>
+          <p class="text-slate-300 text-[11px]">Once all 9 datasets were cleansed using the standardized PySpark template, the entire team transitioned together to the Gold layer.</p>
+        </div>
+
+        <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-1.5">
+          <span class="text-amber-400 font-bold block text-xs"><i class="fa-solid fa-comments-dollar mr-2"></i>2. Gold Business Logic Alignment & Team Raising</span>
+          <p class="text-slate-300 text-[11px]">We pre-defined join sequences and aggregation formulas together. Whenever schema mismatches, null edge cases, or pipeline improvements arose, they were raised and discussed with the team to agree on a consensus before updating the code.</p>
+        </div>
+
+        <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-1.5">
+          <span class="text-cyan-300 font-bold block text-xs"><i class="fa-solid fa-chart-line mr-2"></i>3. Power BI DAX Validation & Presentation Deck</span>
+          <p class="text-slate-300 text-[11px]">We connected Gold Delta tables directly to Power BI via Direct Lake mode. We checked and validated DAX measures against expected business results before finalizing presentation slides.</p>
+        </div>
+      </div>
+
+      <!-- STAGE 6 VISUAL: PROS AND CONS WITH REAL OLIST PROJECT EXAMPLES -->
+      <div id="simStage6" class="hidden my-auto grid grid-cols-2 gap-3 font-mono text-xs">
+        <div class="bg-emerald-950/40 border border-emerald-500/40 p-3.5 rounded-2xl space-y-2">
+          <span class="text-emerald-300 font-bold block border-b border-emerald-800/60 pb-1">
+            <i class="fa-solid fa-circle-plus mr-1"></i> PROS (Real Project Examples)
+          </span>
+          <ul class="space-y-1.5 text-[10.5px] text-slate-300 list-disc pl-3">
+            <li><strong>Zero Pipeline Crashes:</strong> Enforcing explicit schema readers prevented null crashing on 100k+ Olist order records.</li>
+            <li><strong>No Waiting Deadlocks:</strong> Teammates working on <code>sellers</code> or <code>payments</code> didn't have to wait for the <code>geolocation</code> dataset to finish.</li>
+            <li><strong>Asynchronous Progress:</strong> Allowed team members to learn PySpark at their own pace without delaying core pipeline testing.</li>
+          </ul>
+        </div>
+
+        <div class="bg-amber-950/40 border border-amber-500/40 p-3.5 rounded-2xl space-y-2">
+          <span class="text-amber-300 font-bold block border-b border-amber-800/60 pb-1">
+            <i class="fa-solid fa-circle-minus mr-1"></i> CONS (Real Project Challenges)
+          </span>
+          <ul class="space-y-1.5 text-[10.5px] text-slate-300 list-disc pl-3">
+            <li><strong>Upfront Workload:</strong> Required extra hours of study from me to build and document the initial prototype.</li>
+            <li><strong>Fabric Trial API Limits:</strong> Encountered Microsoft Fabric trial tenant locks, forcing us to pivot to GitHub Actions + Power Automate webhooks.</li>
+            <li><strong>Git Merge Conflicts:</strong> Required careful Git branch management when merging team notebook updates.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- STAGE 7 VISUAL: ACTUAL INDUSTRY PRACTICE ROLES -->
+      <div id="simStage7" class="hidden my-auto space-y-2 font-mono text-xs overflow-y-auto max-h-[360px] pr-1 scrollbar-thin">
+        <div class="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
+          <span class="text-sky-400 font-bold block">1. Lead Data Engineer / Architect (My Role)</span>
+          <p class="text-[10.5px] text-slate-400">Researches tools, designs Medallion architecture, writes error-proof PySpark reading functions, builds base templates, and resolves technical blocks for the team.</p>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
+          <span class="text-purple-400 font-bold block">2. Data Pipeline Engineers (Teammates)</span>
+          <p class="text-[10.5px] text-slate-400">Executes Silver layer cleaning scripts, applies schema type casting, handles missing values, and processes assigned raw datasets.</p>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
+          <span class="text-amber-400 font-bold block">3. Analytics Engineer / BI Developer</span>
+          <p class="text-[10.5px] text-slate-400">Builds Gold Star Schema (Fact_Orders, Dim_Customers), formulates DAX metrics in Power BI, and validates dashboard outputs.</p>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
+          <span class="text-emerald-400 font-bold block">4. Scrum Facilitator / Agile Manager</span>
+          <p class="text-[10.5px] text-slate-400">Maintains project documentation, facilitates CRISP-DM phase alignment, and ensures deliverable quality control.</p>
+        </div>
+      </div>
+
+      <!-- STAGE 8 VISUAL: KEY PROJECT SUCCESS FACTORS -->
+      <div id="simStage8" class="hidden my-auto space-y-3 font-mono text-xs">
+        <div class="bg-emerald-950/60 border border-emerald-500/60 p-4 rounded-2xl text-emerald-200 text-center space-y-2">
+          <i class="fa-solid fa-trophy text-3xl text-amber-400"></i>
+          <h3 class="text-base font-black text-emerald-300">How to Make Any Data Engineering Project Successful</h3>
+          <p class="text-xs text-slate-300">Technical coding is only 50%—agile framework, standardized code patterns, and supportive leadership complete the rest!</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-sky-400 font-bold block mb-1">1. Prototype End-to-End</span>
+            <span class="text-slate-400">Test 1 complete slice early to prove schema compatibility.</span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-purple-400 font-bold block mb-1">2. Error-Proof Templates</span>
+            <span class="text-slate-400">Write explicit schema readers to avoid runtime crashes.</span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-emerald-400 font-bold block mb-1">3. Supportive Facilitation</span>
+            <span class="text-slate-400">Discuss issues openly with teammates and align on solutions.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage Navigation Controller -->
+      <div class="flex justify-between items-center border-t border-slate-800 pt-3">
+        <button onclick="prevStage()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono font-bold rounded-xl transition-all active:scale-95">
+          <i class="fa-solid fa-arrow-left mr-1"></i> Prev Step
+        </button>
+        
+        <div class="flex gap-1.5">
+          <div id="dot1" class="w-2 h-2 rounded-full bg-sky-400"></div>
+          <div id="dot2" class="w-2 h-2 rounded-full bg-slate-700"></div>
+          <div id="dot3" class="w-2 h-2 rounded-full bg-slate-700"></div>
+          <div id="dot4" class="w-2 h-2 rounded-full bg-slate-700"></div>
+          <div id="dot5" class="w-2 h-2 rounded-full bg-slate-700"></div>
+          <div id="dot6" class="w-2 h-2 rounded-full bg-slate-700"></div>
+          <div id="dot7" class="w-2 h-2 rounded-full bg-slate-700"></div>
+          <div id="dot8" class="w-2 h-2 rounded-full bg-slate-700"></div>
+        </div>
+
+        <button onclick="nextStage()" class="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-mono font-bold rounded-xl shadow-lg transition-all active:scale-95">
+          Next Step <i class="fa-solid fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Column: Narrative & Explanation -->
+    <section class="col-span-5 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 h-full flex flex-col justify-between shadow-2xl">
+      <div>
+        <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block mb-1">Case Study Narrative</span>
+        <h2 id="descHeading" class="text-2xl font-black text-slate-100 mb-3">1. Facing the Problem: Waiting & Confusion</h2>
+
+        <div id="descBody" class="space-y-3 text-xs text-slate-300 leading-relaxed font-sans">
+          <p>Initially, our project hit a bottleneck because we worked in a linear way. One person was waiting for another to finish before they could start their part.</p>
+          <p>With 4 different learning speeds, some teammates felt lost and didn't know what to do next. Enforcing rigid deadlines only caused frustration and stress.</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs font-mono">
+        <span class="text-slate-400 block text-[10px] uppercase font-bold mb-1">Core Data Engineering Insight</span>
+        <p id="descKeyInsight" class="text-amber-300">
+          "Linear dependencies stop team momentum. Tasks must be decoupled so everyone can progress asynchronously."
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 pt-3 text-center text-xs font-mono text-slate-500">
+    GenSG Junior Data Engineer Capstone • Olist E-Commerce Case Study
+  </footer>
+
+  <script>
+    let currentStage = 1;
+
+    function renderStage(stage) {
+      currentStage = stage;
+
+      const badges = [
+        "1 / 8: Bottlenecks & Waiting",
+        "2 / 8: CRISP-DM Theoretical Framework",
+        "3 / 8: Vertical Slicing Strategy",
+        "4 / 8: Code Standardization & Patterns",
+        "5 / 8: Gold Layer & Power BI DAX",
+        "6 / 8: Real Project Pros & Cons",
+        "7 / 8: Actual Industry Roles",
+        "8 / 8: Project Success Factors"
+      ];
+      document.getElementById('stageBadge').innerText = badges[stage - 1];
+
+      // Hide all visual stages
+      for (let i = 1; i <= 8; i++) {
+        document.getElementById(`simStage${i}`).classList.add('hidden');
+        document.getElementById(`dot${i}`).className = i === stage ? "w-2 h-2 rounded-full bg-sky-400" : "w-2 h-2 rounded-full bg-slate-700";
+      }
+
+      document.getElementById(`simStage${stage}`).classList.remove('hidden');
+
+      if (stage === 1) {
+        document.getElementById('simTitle').innerText = "STAGE 1: Traditional Pipeline Bottlenecks & Confusion";
+        document.getElementById('descHeading').innerText = "1. Facing the Problem: Waiting & Confusion";
+        document.getElementById('descBody').innerHTML = `
+          <p>Initially, our project hit a bottleneck because we worked in a linear way. One person was waiting for another to finish before they could start their part.</p>
+          <p>With 4 different learning speeds, some teammates felt lost and didn't know what to do next. Enforcing rigid deadlines only caused frustration and stress.</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"Linear dependencies stop team momentum. Tasks must be decoupled so everyone can progress asynchronously."';
+      } 
+      else if (stage === 2) {
+        document.getElementById('simTitle').innerText = "STAGE 2: CRISP-DM Theoretical Framework";
+        document.getElementById('descHeading').innerText = "2. What is CRISP-DM?";
+        document.getElementById('descBody').innerHTML = `
+          <p><strong>CRISP-DM</strong> (Cross-Industry Standard Process for Data Mining) is the industry-standard methodology for data science and data engineering projects.</p>
+          <p>It consists of 6 iterative phases: <i>Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation,</i> and <i>Deployment</i>.</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"CRISP-DM provides an agile framework that allows continuous refinement across all pipeline phases."';
+      }
+      else if (stage === 3) {
+        document.getElementById('simTitle').innerText = "STAGE 3: Vertical Slicing Execution Strategy";
+        document.getElementById('descHeading').innerText = "3. Vertical Slicing vs Horizontal Bottlenecks";
+        document.getElementById('descBody').innerHTML = `
+          <p>Instead of completing each phase horizontally across all 9 datasets simultaneously, we adopted <strong>Vertical Slicing</strong>.</p>
+          <p>I built 1 complete feature slice (Orders dataset) through all 6 phases first. Once proven, teammates picked up Slice 2 (Payments) and Slice 3 (Sellers) independently!</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"Vertical Slicing builds complete end-to-end functionality early, proving the architecture before scaling."';
+      }
+      else if (stage === 4) {
+        document.getElementById('simTitle').innerText = "STAGE 4: Code Standardization & Reusable Patterns";
+        document.getElementById('descHeading').innerText = "4. Code Standardization & Templates";
+        document.getElementById('descBody').innerHTML = `
+          <p>I studied ahead and built <strong>1 complete vertical slice</strong> (Orders dataset → Bronze → Silver → Gold) to establish explicit schema validation rules.</p>
+          <p>I wrote reusable schema-reading functions and documented clean templates. Teammates then took these error-proof templates and cleansed their assigned datasets at their own speed!</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"Writing reusable schema-reading wrappers upfront prevents schema evolution crashes across all team datasets."';
+      } 
+      else if (stage === 5) {
+        document.getElementById('simTitle').innerText = "STAGE 5: Gold Aggregations & Power BI DAX Validation";
+        document.getElementById('descHeading').innerText = "5. Gold Layer & DAX Validation";
+        document.getElementById('descBody').innerHTML = `
+          <p>Once Silver datasets were standardized, the team set up pre-defined join sequences and aggregation formulas together. Whenever schema mismatches or improvements arose, they were raised and discussed with the team to agree on a consensus before updating the code.</p>
+          <p>We then connected Gold Delta tables directly to Power BI via Direct Lake mode, validating DAX formulas against expectations before publishing presentation slides.</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"Raising issues early and agreeing on join sequences ahead of execution prevents metric mismatches in Power BI."';
+      } 
+      else if (stage === 6) {
+        document.getElementById('simTitle').innerText = "STAGE 6: Workflow Pros and Cons (Olist Realities)";
+        document.getElementById('descHeading').innerText = "6. Pros & Cons in the Olist Project";
+        document.getElementById('descBody').innerHTML = `
+          <p><strong>Pros:</strong> Zero schema crashes on 100k+ records, no team deadlocks, and clear learning paths for beginner teammates.</p>
+          <p><strong>Cons:</strong> Required extra upfront study time from me, and required handling trial-tenant API locks via Power Automate webhooks.</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"The upfront investment in prototyping and schema validation pays off completely during team integration."';
+      }
+      else if (stage === 7) {
+        document.getElementById('simTitle').innerText = "STAGE 7: Actual Industry Role Mapping";
+        document.getElementById('descHeading').innerText = "7. Industry Practice Alignment";
+        document.getElementById('descBody').innerHTML = `
+          <p>In a real corporate data engineering team, these responsibilities map directly to specialized roles:</p>
+          <ul class="list-disc pl-4 space-y-1 text-slate-300 text-[11px]">
+            <li><strong>Lead DE / Architect:</strong> My role—designs pipeline, writes schema wrappers & base templates.</li>
+            <li><strong>Data Pipeline Engineers:</strong> Cleanses Silver datasets & handles missing values.</li>
+            <li><strong>BI Developer / Analyst:</strong> Builds Gold Star Schema & Power BI DAX.</li>
+            <li><strong>Analytics Engineer:</strong> Maintains documentation & quality control.</li>
+          </ul>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"Mapping capstone tasks to real industry roles gives everyone practical corporate experience."';
+      }
+      else if (stage === 8) {
+        document.getElementById('simTitle').innerText = "STAGE 8: Key Project Success Factors";
+        document.getElementById('descHeading').innerText = "8. How to Make a Data Project Successful";
+        document.getElementById('descBody').innerHTML = `
+          <p>To make any data project successful:</p>
+          <p>1. <strong>Prototype 1 slice early</strong> to prove schema compatibility.<br>2. <strong>Document standardized error-proof templates</strong>.<br>3. <strong>Discuss issues openly</strong> and support teammates with patience.</p>
+        `;
+        document.getElementById('descKeyInsight').innerText = '"Success comes from technical clarity, standardized workflows, and supportive team alignment."';
+      }
+    }
+
+    function nextStage() {
+      if (currentStage < 8) renderStage(currentStage + 1);
+      else renderStage(1);
+    }
+
+    function prevStage() {
+      if (currentStage > 1) renderStage(currentStage - 1);
+      else renderStage(8);
+    }
+
+    renderStage(1);
+  </script>
+</body>
+</html>
